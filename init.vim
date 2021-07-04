@@ -12,6 +12,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
+lua require('goconfig')
 lua require('lsp')
 lua require('treesitter')
 lua require('statusline')
@@ -27,6 +28,7 @@ autocmd FileType nix setlocal shiftwidth=2 tabstop=2 expandtab
 "" some defaults
 set nobackup
 set nowritebackup
+set autochdir
 
 "" theme
 set background=dark
