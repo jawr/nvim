@@ -1,18 +1,31 @@
 call plug#begin(stdpath('data') . '/plugged')
+  "" dependencies
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-lua/popup.nvim'
-  Plug 'crispgm/nvim-go'
+  "" go 
+  Plug 'mattn/vim-goimports'
+  "" Plug 'crispgm/nvim-go'
+  "" lsp and treesitter
   Plug 'neovim/nvim-lspconfig'
   Plug 'glepnir/lspsaga.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'hoob3rt/lualine.nvim'
-  "" https://github.com/nvim-lua/completion-nvim
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'lifepillar/vim-gruvbox8'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  "" telescope/file search
   Plug 'nvim-telescope/telescope.nvim'
+  "" telescope icons
+  Plug 'kyazdani42/nvim-web-devicons'
+  "" status line
+  Plug 'hoob3rt/lualine.nvim'
+  "" autocomplete
+  Plug 'hrsh7th/nvim-compe'
+  "" prettier
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+  "" theme
+  Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 call plug#end()
 
-lua require('goconfig')
+"" lua imports
+"" lua require('goconfig')
+lua require('completion')
 lua require('lsp')
 lua require('treesitter')
 lua require('statusline')
@@ -28,11 +41,26 @@ autocmd FileType nix setlocal shiftwidth=2 tabstop=2 expandtab
 "" some defaults
 set nobackup
 set nowritebackup
-set autochdir
+
+"" set javascript files to be autochdir
+autocmd FileType javascript set autochdir
 
 "" theme
-set background=dark
-colorscheme gruvbox8
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+syntax enable
+colorscheme nord
+
+let g:nord_cursor_line_number_background = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_bold_vertical_split_line = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
 
 "" saga overrides
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
@@ -41,20 +69,9 @@ nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
 nnoremap <silent> gr <cmd>lua require('lspsaga.rename').rename()<CR>
 nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
-
-nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR> 
-tnoremap <silent> <A-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
-
-"" completion overrides
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-
-"" completion disable auto popup and set tab to trigger auto complete
-let g:completion_enable_auto_popup = 0
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+"" saga terminal
+nnoremap <silent> <leader>d <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR> 
+tnoremap <silent> <leader>d <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
 "" telescope
 " Using lua functions
@@ -62,3 +79,16 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+"" set number by default
+set number
+
+"" set tabs
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType typescript setlocal ts=2 sts=2 sw=2
+
+"" prettier
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1

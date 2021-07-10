@@ -1,6 +1,6 @@
 require('go').setup{
     -- auto commands
-    auto_format = true,
+    -- auto_format = true,
     auto_lint = true,
     -- linters: golint, errcheck, staticcheck, golangci-lint
     linter = 'golangcli-lint',
