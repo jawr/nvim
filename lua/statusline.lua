@@ -29,5 +29,7 @@ lualine.setup {
     lualine_z = {}
   },
   tabline = {},
-  extensions = {}
+  extensions = {
+    'quickfix'
+  }
 }
