@@ -1,11 +1,10 @@
 local status, lualine = pcall(require, "lualine")
 if (not status) then return end
+
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'nord',
-    section_separators = {'', ''},
-    component_separators = {'', ''},
+    theme = 'gruvbox',
     disabled_filetypes = {}
   },
   sections = {
@@ -29,7 +28,5 @@ lualine.setup {
     lualine_z = {}
   },
   tabline = {},
-  extensions = {
-    'quickfix'
-  }
+  extensions = {'fugitive', 'quickfix', 'nvim-tree'}
 }
