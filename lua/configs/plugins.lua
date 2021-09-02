@@ -1,5 +1,5 @@
 return require('packer').startup(function()
-
+  -- packer
   use 'wbthomason/packer.nvim'
 
   -- lsp pre configs
@@ -15,16 +15,12 @@ return require('packer').startup(function()
   }
 
   -- completion
-  -- use 'hrsh7th/nvim-compe'
-  -- use { 'ms-jpq/coq_nvim', branch = 'coq'}
-
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
+  -- snippets
   use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
-
-  -- use 'windwp/nvim-autopairs' -- Auto-pairs with nvim-treesitter integration
+  use "rafamadriz/friendly-snippets"
+  use 'L3MON4D3/LuaSnip' 
 
   -- status bar
   use {
@@ -36,13 +32,13 @@ return require('packer').startup(function()
   -- use 'folke/tokyonight.nvim'
   use 'savq/melange'
 
-  use {
-    'ray-x/go.nvim',
-    require('go').setup({
-      goimport = 'gopls',
-      gofmt = 'gopls',
-      lsp_gofumpt = true,
-    })
-  }
+  -- use {
+  --   'ray-x/go.nvim',
+  --   require('go').setup({
+  --     goimport = 'gopls',
+  --     gofmt = 'gopls',
+  --     lsp_gofumpt = true,
+  --   })
+  -- }
 
 end)

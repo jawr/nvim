@@ -2,7 +2,6 @@ local opt = vim.opt
 local g   = vim.g
 local cmd = vim.cmd
 
--- Editor behavior ->>1
 opt.expandtab = true -- Tabs are the devil's work
 opt.hidden = true
 opt.history = 1000
@@ -13,7 +12,12 @@ opt.softtabstop = 4 -- Makes you think that your spaces are tabs
 opt.tabstop = 4 -- The all powerfull tab number
 opt.number = true -- Show line numbers
 opt.showmatch = true -- Highlight matching parentesis, braces, etc.
--- opt.list = true -- Show some invisible characters
+
+-- completion
+vim.o.completeopt = 'menuone,noselect'
+
+-- appearance
+opt.list = false -- Show some invisible characters (i.e. space)
 opt.termguicolors = true  -- True color support
 
 -- search
@@ -24,9 +28,6 @@ vim.o.smartcase = true
 
 opt.cursorline = true
 opt.lazyredraw = true
-
--- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59#issuecomment-806398054
-vim.wo.colorcolumn = "99999"
 
 -- autocommands
 cmd 'autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab'
