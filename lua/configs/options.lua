@@ -12,9 +12,8 @@ opt.writebackup = false -- No backups made while editing
 opt.softtabstop = 4 -- Makes you think that your spaces are tabs
 opt.tabstop = 4 -- The all powerfull tab number
 opt.number = true -- Show line numbers
--- opt.showbreak = '↲' -- Show me where you broke my lines
 opt.showmatch = true -- Highlight matching parentesis, braces, etc.
-opt.list = true -- Show some invisible characters
+-- opt.list = true -- Show some invisible characters
 opt.termguicolors = true  -- True color support
 
 -- search
@@ -25,6 +24,9 @@ vim.o.smartcase = true
 
 opt.cursorline = true
 opt.lazyredraw = true
+
+-- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59#issuecomment-806398054
+vim.wo.colorcolumn = "99999"
 
 -- autocommands
 cmd 'autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab'
@@ -41,15 +43,5 @@ cmd 'autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab'
 cmd 'autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab'
 cmd 'autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab'
 cmd 'autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab'
+cmd 'autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab'
 cmd 'autocmd FileType proto setlocal ts=2 sts=2 sw=2 expandtab'
-
--- Highlight on yank
-vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]],
-  false
-)

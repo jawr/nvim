@@ -9,10 +9,6 @@ local nvim_treesitter = require 'nvim-treesitter.configs'.setup {
   indent = {
     enable = true,
   },
-  -- Used by nvim-autopair
-  -- autopairs = { 
-  --   enable = true
-  -- },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -25,9 +21,9 @@ local nvim_treesitter = require 'nvim-treesitter.configs'.setup {
 }
 
 -- Folding
-local opt = vim.opt
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
-opt.foldlevel = 99
+-- local opt = vim.opt
+-- opt.foldmethod = 'expr'
+-- opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- opt.foldlevel = 99
 
 return nvim_tree_sitter

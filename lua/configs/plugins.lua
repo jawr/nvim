@@ -24,7 +24,7 @@ return require('packer').startup(function()
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
 
-  use 'windwp/nvim-autopairs' -- Auto-pairs with nvim-treesitter integration
+  -- use 'windwp/nvim-autopairs' -- Auto-pairs with nvim-treesitter integration
 
   -- status bar
   use {
@@ -32,11 +32,17 @@ return require('packer').startup(function()
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
+  -- themes
   -- use 'folke/tokyonight.nvim'
   use 'savq/melange'
 
-  use "lukas-reineke/indent-blankline.nvim"
-
-  -- https://github.com/ray-x/go.nvim
+  use {
+    'ray-x/go.nvim',
+    require('go').setup({
+      goimport = 'gopls',
+      gofmt = 'gopls',
+      lsp_gofumpt = true,
+    })
+  }
 
 end)
