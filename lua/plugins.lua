@@ -24,12 +24,14 @@ return require('packer').startup(function()
       -- icons
       'onsails/lspkind-nvim',
       -- completion sources
-      'hrsh7th/vim-vsnip',
+      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
     }
   }
 
   -- snippets
+  use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
   use 'golang/vscode-go'
 
   -- status bar

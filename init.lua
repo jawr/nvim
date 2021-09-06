@@ -1,11 +1,9 @@
-require('configs.plugins')
-require('configs.telescope')
-require('configs.lspconfig')
-require('configs.lualine')
-require('configs.nvim-treesitter')
-require('configs.options')
-require('configs.theme')
--- require('configs.coq_nvim')
--- require('configs.nvim-compe')
-require('configs.nvim-cmp')
--- require('configs.nvim-autopairs')
+require "plugins"
+require "options"
+require "lsp"
+require "treesitter"
+require "lualine"
+require "telescope"
+require "complete"
+require "snippets"
+require "theme"
