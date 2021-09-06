@@ -11,16 +11,26 @@ return require('packer').startup(function()
   -- fuzzy finder
   use {  
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {
+      'nvim-lua/popup.nvim', 
+      'nvim-lua/plenary.nvim',
+    }
   }
 
   -- completion
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp'
+  use { 
+    'hrsh7th/nvim-cmp',
+    requires = {
+      -- icons
+      'onsails/lspkind-nvim',
+      -- completion sources
+      'hrsh7th/vim-vsnip',
+      'hrsh7th/cmp-nvim-lsp',
+    }
+  }
+
   -- snippets
-  use 'saadparwaiz1/cmp_luasnip'
-  use "rafamadriz/friendly-snippets"
-  use 'L3MON4D3/LuaSnip' 
+  use 'golang/vscode-go'
 
   -- status bar
   use {
@@ -29,16 +39,6 @@ return require('packer').startup(function()
   }
 
   -- themes
-  -- use 'folke/tokyonight.nvim'
   use 'savq/melange'
-
-  -- use {
-  --   'ray-x/go.nvim',
-  --   require('go').setup({
-  --     goimport = 'gopls',
-  --     gofmt = 'gopls',
-  --     lsp_gofumpt = true,
-  --   })
-  -- }
 
 end)
