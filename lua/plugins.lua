@@ -4,6 +4,15 @@ return require('packer').startup(function()
 
   -- lsp pre configs
   use 'neovim/nvim-lspconfig'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    }
+  }
+
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
   -- syntax hilighting
   use { 'nvim-treesitter/nvim-treesitter' }
