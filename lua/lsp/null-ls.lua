@@ -14,4 +14,7 @@ local sources = {
   }),
 }
 
-null_ls.config({ sources = sources })
+null_ls.config({
+	debug = true,
+	sources = sources,
+})
