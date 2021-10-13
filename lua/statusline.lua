@@ -8,8 +8,14 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch" },
-		lualine_c = { "filename" },
+		lualine_b = {
+			{
+				"filename",
+				file_status = true,
+				path = 1,
+			},
+		},
+		lualine_c = {},
 		lualine_x = {
 			{
 				"diagnostics",
@@ -19,8 +25,8 @@ lualine.setup({
 			"encoding",
 			"filetype",
 		},
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
+		lualine_y = { "location" },
+		lualine_z = { "branch" },
 	},
 	inactive_sections = {
 		lualine_a = {},

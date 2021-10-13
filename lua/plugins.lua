@@ -38,8 +38,6 @@ return require("packer").startup(function()
 		},
 	})
 
-	use("ray-x/lsp_signature.nvim")
-
 	-- snippets
 	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
