@@ -51,4 +51,11 @@ return require("packer").startup(function()
 
 	-- themes
 	use("savq/melange")
+
+	use({
+		"luukvbaal/stabilize.nvim",
+		config = function()
+			require("stabilize").setup()
+		end,
+	})
 end)
