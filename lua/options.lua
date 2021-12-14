@@ -48,6 +48,7 @@ cmd("autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab")
 cmd("autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab")
 cmd("autocmd FileType sql setlocal ts=2 sts=2 sw=2 expandtab")
 cmd("autocmd FileType tfvars setlocal ts=2 sts=2 sw=2 expandtab")
+cmd("autocmd FileType svelte setlocal ts=2 sts=2 sw=2 expandtab")
 cmd("autocmd FileType tf setlocal ts=2 sts=2 sw=2 expandtab")
 
 cmd("autocmd BufRead,BufNewFile *.libsonnet set filetype=jsonnet")
