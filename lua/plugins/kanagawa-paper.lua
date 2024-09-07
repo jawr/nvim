@@ -6,6 +6,7 @@ return {
 		config = function()
 			require("kanagawa-paper").setup({
 				transparent = true,
+				undercurls = true,
 				colors = {
 					theme = {
 						all = {

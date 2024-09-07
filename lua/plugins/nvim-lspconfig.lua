@@ -100,6 +100,20 @@ return {
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			--
+
+			-- disable inline diagnostics
+			vim.diagnostic.config({
+				underline = true,
+				virtual_text = false,
+				update_in_insert = true,
+			})
+
+			local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+			end
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -111,10 +125,19 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
+				tailwindcss = {},
 				pyright = {
 					cmd = { "pyright-langserver", "--stdio", "--verbose" },
 				},
-				tsserver = {},
+				tsserver = {
+					init_options = {
+						preferences = {
+							-- other preferences...
+							importModuleSpecifierPreference = "non-relative",
+							-- importModuleSpecifierEnding = 'minimal',
+						},
+					},
+				},
 				--
 
 				lua_ls = {
@@ -147,7 +170,7 @@ return {
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			-- require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
 				handlers = {
