@@ -129,7 +129,7 @@ return {
 				pyright = {
 					cmd = { "pyright-langserver", "--stdio", "--verbose" },
 				},
-				tsserver = {
+				ts_ls = {
 					init_options = {
 						preferences = {
 							-- other preferences...

@@ -2,6 +2,7 @@ return {
 	{
 		"echasnovski/mini.completion",
 		version = false,
+		enabled = false,
 		config = function()
 			require("mini.completion").setup()
 
