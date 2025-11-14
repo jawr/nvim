@@ -25,8 +25,6 @@ return {
 						},
 						{ "filetype", icon_only = true, separator = "" },
 						{ "filename" },
-					},
-					lualine_x = {
 						{
 							function()
 								return require("nvim-navic").get_location()
@@ -35,11 +33,12 @@ return {
 								return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
 							end,
 						},
+					},
+					lualine_x = {
 						{ "diff" },
 					},
 					lualine_y = {
 						{ "progress" },
-						{ "location" },
 					},
 					lualine_z = {
 						{ "datetime", style = "  %X" },

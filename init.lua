@@ -73,4 +73,16 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
---
+
+-- Delete without yanking
+vim.api.nvim_set_keymap("n", "<leader>d", '"_d', { noremap = true })
+vim.api.nvim_set_keymap("v", "<leader>d", '"_d', { noremap = true })
+
+-- Replace currently selected text with default register without yanking it
+vim.api.nvim_set_keymap("v", "<leader>p", '"_dP', { noremap = true })
+
+-- Neovide
+vim.g.neovide_padding_top = 8
+vim.g.neovide_padding_bottom = 8
+vim.g.neovide_padding_right = 24
+vim.g.neovide_padding_left = 24

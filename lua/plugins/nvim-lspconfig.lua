@@ -115,6 +115,32 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 
+			local lspconfig_util = require("lspconfig").util
+			function deepest_root_pattern(patterns1, patterns2)
+				-- Create two root_pattern functions
+				local find_root1 = lspconfig_util.root_pattern(unpack(patterns1))
+				local find_root2 = lspconfig_util.root_pattern(unpack(patterns2))
+
+				return function(startpath)
+					local path1 = find_root1(startpath)
+					local path2 = find_root2(startpath)
+
+					if path1 and path2 then
+						-- Count the number of slashes to determine the path length
+						local path1_length = select(2, path1:gsub("/", ""))
+						local path2_length = select(2, path2:gsub("/", ""))
+
+						if path1_length > path2_length then
+							return path1
+						end
+					elseif path1 then
+						return path1
+					end
+
+					return nil
+				end
+			end
+
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -137,6 +163,11 @@ return {
 							-- importModuleSpecifierEnding = 'minimal',
 						},
 					},
+					root_dir = deepest_root_pattern(
+						{ "package.json", "tsconfig.json" },
+						{ "deno.json", "deno.jsonc", "import_map.json" }
+					),
+					single_file_support = false,
 				},
 				--
 

@@ -12,10 +12,10 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "black", "isort" },
-				javascript = { "prettierd", "eslint" },
-				typescript = { "prettierd", "eslint" },
-				typescriptreact = { "prettierd", "eslint" },
-				javascriptreact = { "prettierd", "eslint" },
+				javascript = { "prettier", "eslint_d" },
+				typescript = { "prettier", "eslint_d" },
+				typescriptreact = { "prettier", "eslint_d" },
+				javascriptreact = { "prettier", "eslint_d" },
 			},
 			formatters = {
 				black = {

@@ -1,6 +1,6 @@
 return {
 	"onsails/lspkind.nvim",
-	enabled = false, -- doesnt work with blink.cmp
+	enabled = true, -- doesnt work with blink.cmp
 	config = function()
 		require("lspkind").init({
 			mode = "symbol",
